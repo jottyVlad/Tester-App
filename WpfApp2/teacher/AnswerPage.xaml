@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp2.teacher.AnswerPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2.teacher"
+        mc:Ignorable="d"
+        Title="AnswerPage" Height="450" Width="800">
+    <Grid>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="0,55,0,0" TextWrapping="Wrap" Text="Введите вопрос" VerticalAlignment="Top" Height="23" Width="792" FontSize="15"/>
+        <TextBox Name="TitleOfQuestion" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="792" FontSize="15"/>
+        <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="0,120,0,0" TextWrapping="Wrap" Text="Варианты ответа" VerticalAlignment="Top" Height="23" Width="792" FontSize="15"/>
+        <TextBox Name="Var1" TextAlignment="Left" HorizontalAlignment="Left" Height="23" Margin="0,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="638" FontSize="15"/>
+        <TextBox Name="Var2" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="638" FontSize="15"/>
+        <TextBox Name="Var3" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="638" FontSize="15"/>
+        <Button Content="Дальше" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="792" Height="23" FontSize="15" Click="Next_Answer_Click"/>
+        <Button Content="Хватит" HorizontalAlignment="Left" Margin="0,260,0,0" VerticalAlignment="Top" Width="792" Height="23" FontSize="15"/>
+        <StackPanel x:Name="stackPanel" Margin="0,148,110,-23" HorizontalAlignment="Right" Width="25">
+            <RadioButton Name="First" GroupName="Answer" Margin="0,0,0,0"/>
+            <RadioButton Name="Second" GroupName="Answer" Margin="0,15,0,0"/>
+            <RadioButton Name="Third" GroupName="Answer" Margin="0,15,0,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

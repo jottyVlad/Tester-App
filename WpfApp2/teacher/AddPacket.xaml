@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfApp2.teacher.AddPacket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="AddPacket" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="NameOfPacket" HorizontalAlignment="Center" Height="23" Margin="0,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250"/>
+        <TextBlock Name="write"  HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" Text="Введите название" VerticalAlignment="Top" Height="19" Width="782" TextAlignment="Center"/>
+        <Button Content="Далее" HorizontalAlignment="Center" Margin="0,185,0,0" VerticalAlignment="Top" Width="250" Click="Next_Click"/>
+
+    </Grid>
+</Window>
