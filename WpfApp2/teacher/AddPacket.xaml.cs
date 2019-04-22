@@ -21,10 +21,25 @@ namespace WpfApp2.teacher
     /// </summary>
     public partial class AddPacket : Window
     {
+        public Teacher TeacherWind { get; set; }
         public string NamePacket { get; set; }
         public AddPacket()
         {
             InitializeComponent();
+
+            this.Closing += AddPacket_Closing;
+        }
+
+        private void AddPacket_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
+                TeacherWind.Show();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -45,9 +60,11 @@ namespace WpfApp2.teacher
                 AnswerPage CreateAnswers = new AnswerPage();
                 CreateAnswers.PackageID = cmd_line_select;
 
-                CreateAnswers.ShowDialog();
+                CreateAnswers.TeacherWind = this.TeacherWind;
 
-                this.Close();
+                this.Hide();
+
+                CreateAnswers.ShowDialog();
             }
         }
     }

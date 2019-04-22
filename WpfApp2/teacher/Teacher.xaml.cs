@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,24 +21,37 @@ namespace WpfApp2.teacher
     /// </summary>
     public partial class Teacher : Window
     {
-        public Teacher teacherwind { get; }
+        public MainWindow MainWind { get; set; }
         public Teacher()
         {
             InitializeComponent();
+            this.Closing += Teacher_Closing;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            //teacherwind.Close();
+            this.Hide();
             AddPacket AddPacketWindow = new AddPacket();
+            AddPacketWindow.TeacherWind = this;
             AddPacketWindow.ShowDialog();
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            //this.Close();
+            this.Hide();
             RemovePacket RemovePacketWindow = new RemovePacket();
             RemovePacketWindow.ShowDialog();
+        }
+        private void Teacher_Closing(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                MainWind.Show();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

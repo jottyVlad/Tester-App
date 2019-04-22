@@ -8,11 +8,26 @@ namespace WpfApp2.teacher
     /// </summary>
     public partial class AnswerPage : Window
     {
+        public Teacher TeacherWind { get; set; }
         public int PackageID { get; set; }
         int rightvar = 0;
         public AnswerPage()
         {
             InitializeComponent();
+
+            this.Closing += AnswerPage_Closing;
+        }
+
+        private void AnswerPage_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
+                TeacherWind.Show();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void Next_Answer_Click(object sender, RoutedEventArgs e)
@@ -43,17 +58,24 @@ namespace WpfApp2.teacher
                 {
                     rightvar = 3;
                 }
-                string sql = $"INSERT INTO questions(id, name, var1, var2, var3, rightvar, test_id) VALUES(null, '{Ask}', '{Var1}', '{Var2}', '{Var3}', {rightvar}, {PackageID})";
-                MySqlCommand command = new MySqlCommand(sql, conn);
-                int cmd_line = command.ExecuteNonQuery();
+                if (rightvar != 0)
+                {
+                    string sql = $"INSERT INTO questions(id, name, var1, var2, var3, rightvar, test_id) VALUES(null, '{Ask}', '{Var1}', '{Var2}', '{Var3}', {rightvar}, {PackageID})";
+                    MySqlCommand command = new MySqlCommand(sql, conn);
+                    int cmd_line = command.ExecuteNonQuery();
 
-                this.TitleOfQuestion.Text = "";
-                this.Var1.Text = "";
-                this.Var2.Text = "";
-                this.Var3.Text = "";
-                this.First.IsChecked = false;
-                this.Second.IsChecked = false;
-                this.Third.IsChecked = false;
+                    this.TitleOfQuestion.Text = "";
+                    this.Var1.Text = "";
+                    this.Var2.Text = "";
+                    this.Var3.Text = "";
+                    this.First.IsChecked = false;
+                    this.Second.IsChecked = false;
+                    this.Third.IsChecked = false;
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }

@@ -24,13 +24,23 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Closed += MainWindow_Closed;
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            foreach (Window w in App.Current.Windows)
+                w.Close();
         }
 
         private void ButtonAuth_Click(object sender, RoutedEventArgs e)
         {
             if(this.ComboBoxAuth.SelectedItem == Teacher)
             {
+                this.Hide();
                 Teacher TeacherWind = new Teacher();
+                TeacherWind.MainWind = this;
                 TeacherWind.ShowDialog();
             }
         }
