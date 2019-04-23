@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp2;
 using MySql.Data.MySqlClient;
+using System.Collections.ObjectModel;
 
 namespace WpfApp2.teacher
 {
@@ -44,13 +45,34 @@ namespace WpfApp2.teacher
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            if(this.NameOfPacket.Text != "")
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            conn.Open();
+            string sql = "SELECT name FROM packets";
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            MySqlDataReader command_reader = command.ExecuteReader();
+
+            MySqlConnection conn_2 = DBUtils.GetDBConnection();
+            conn_2.Open();
+            sql = "SELECT COUNT(*) FROM packets";
+            command = new MySqlCommand(sql, conn_2);
+            int command_count = Convert.ToInt32(command.ExecuteScalar());
+
+            var list = new List<string>();
+
+            while (command_reader.Read())
             {
-                MySqlConnection conn = DBUtils.GetDBConnection();
+                list.Add(command_reader.GetString(0));
+            }
+
+            conn.Close();
+
+            if(this.NameOfPacket.Text != "" && !(list.Contains(this.NameOfPacket.Text)))
+            {
+                conn = DBUtils.GetDBConnection();
                 conn.Open();
                 NamePacket = this.NameOfPacket.Text;
-                string sql = $"INSERT INTO packets (id, name) VALUES(null, '{NamePacket}')";
-                MySqlCommand command = new MySqlCommand(sql, conn);
+                sql = $"INSERT INTO packets (id, name) VALUES(null, '{NamePacket}')";
+                command = new MySqlCommand(sql, conn);
                 int cmd_line_insert = command.ExecuteNonQuery();
 
                 sql = $"SELECT id FROM packets WHERE name = '{NamePacket}'";

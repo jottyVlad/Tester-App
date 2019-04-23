@@ -40,6 +40,7 @@ namespace WpfApp2.teacher
         {
             this.Hide();
             RemovePacket RemovePacketWindow = new RemovePacket();
+            RemovePacketWindow.TeacherWind = this;
             RemovePacketWindow.ShowDialog();
         }
         private void Teacher_Closing(object sender, CancelEventArgs e)
