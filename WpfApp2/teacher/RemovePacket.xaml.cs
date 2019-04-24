@@ -22,7 +22,7 @@ namespace WpfApp2.teacher
             MySqlConnection conn_1 = DBUtils.GetDBConnection();
             conn_1.Open();
 
-            string sql = "SELECT name FROM packets";
+            string sql = "SELECT * FROM packets";
             MySqlCommand command = new MySqlCommand(sql, conn);
             MySqlDataReader cmd_reader = command.ExecuteReader();
 
@@ -32,7 +32,12 @@ namespace WpfApp2.teacher
 
             while (cmd_reader.Read())
             {
-                string cmd_reader_string = cmd_reader.GetString(0);
+                int cmd_reader_int = cmd_reader.GetInt32(0);
+                string cmd_reader_string = cmd_reader.GetString(1);
+
+                TestClass ClassOfTests = new TestClass();
+                ClassOfTests.Id = cmd_reader_int;
+                ClassOfTests.name = cmd_reader_string;
 
                 list.Add(cmd_reader_string);
             }

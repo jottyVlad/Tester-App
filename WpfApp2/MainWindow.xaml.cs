@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp2.teacher;
+using WpfApp2.pupil;
 
 namespace WpfApp2
 {
@@ -42,6 +43,13 @@ namespace WpfApp2
                 Teacher TeacherWind = new Teacher();
                 TeacherWind.MainWind = this;
                 TeacherWind.ShowDialog();
+            }
+            if(this.ComboBoxAuth.SelectedItem == Pupil)
+            {
+                this.Hide();
+                ChooseTest chooseTestWindow = new ChooseTest();
+                chooseTestWindow.MainWind = this;
+                chooseTestWindow.ShowDialog();
             }
         }
     }
