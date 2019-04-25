@@ -42,6 +42,8 @@ namespace WpfApp2.teacher
             string Var2 = this.Var2.Text;
             string Var3 = this.Var3.Text;
 
+            int question_id = 1;
+
             if (AskNeverSpaces != "" && Var1NeverSpaces != "" && Var2NeverSpaces != "" && Var3NeverSpaces != "")
             {
                 MySqlConnection conn = DBUtils.GetDBConnection();
@@ -60,7 +62,7 @@ namespace WpfApp2.teacher
                 }
                 if (rightvar != 0)
                 {
-                    string sql = $"INSERT INTO questions(id, name, var1, var2, var3, rightvar, test_id) VALUES(null, '{Ask}', '{Var1}', '{Var2}', '{Var3}', {rightvar}, {PackageID})";
+                    string sql = $"INSERT INTO questions(id, name, var1, var2, var3, rightvar, test_id, question_id) VALUES(null, '{Ask}', '{Var1}', '{Var2}', '{Var3}', {rightvar}, {PackageID}, {question_id})";
                     MySqlCommand command = new MySqlCommand(sql, conn);
                     int cmd_line = command.ExecuteNonQuery();
 
@@ -71,6 +73,8 @@ namespace WpfApp2.teacher
                     this.First.IsChecked = false;
                     this.Second.IsChecked = false;
                     this.Third.IsChecked = false;
+
+                    question_id++;
                 }
                 else
                 {

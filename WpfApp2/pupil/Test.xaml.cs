@@ -23,47 +23,80 @@ namespace WpfApp2.pupil
         public int TestId { get; set; }
         public TestClass NamelyTest { get; set; }
         public QuestionClass NamelyQuestion { get; set; }
-        public Test()
+        public List<QuestionClass> ListOfClasses { get; set; }
+
+        int count = 2;
+
+        public Test(int TestId)
         {
-            MySqlConnection conn = DBUtils.GetDBConnection();
+            this.TestId = TestId;
+
+            /*MySqlConnection conn = DBUtils.GetDBConnection();
             conn.Open();
 
-            MySqlConnection conn_2 = DBUtils.GetDBConnection();
-            conn_2.Open();
-
-            string sql = $"SELECT * FROM questions WHERE test_id = {TestId}";
+            string sql = $"SELECT * FROM questions WHERE `test_id` = {TestId}";
             MySqlCommand command = new MySqlCommand(sql, conn);
-            MySqlDataReader command_reader = command.ExecuteReader();
+            MySqlDataReader cmd_reader = command.ExecuteReader();
 
             List<QuestionClass> ListOfClasses = new List<QuestionClass> { };
-            while (command_reader.Read())
+            while (cmd_reader.Read() )
             {
                 NamelyQuestion = new QuestionClass();
-                NamelyQuestion.Id = command_reader.GetInt32(0);
-                NamelyQuestion.name = command_reader.GetString(1);
-                NamelyQuestion.var1 = command_reader.GetString(2);
-                NamelyQuestion.var2 = command_reader.GetString(3);
-                NamelyQuestion.var3 = command_reader.GetString(4);
-                NamelyQuestion.rightvar = command_reader.GetInt32(5);
-                NamelyQuestion.TestId = command_reader.GetInt32(6);
+                NamelyQuestion.Id = cmd_reader.GetInt32(0);
+                NamelyQuestion.name = cmd_reader.GetString(1);
+                NamelyQuestion.var1 = cmd_reader.GetString(2);
+                NamelyQuestion.var2 = cmd_reader.GetString(3);
+                NamelyQuestion.var3 = cmd_reader.GetString(4);
+                NamelyQuestion.rightvar = cmd_reader.GetInt32(5);
+                NamelyQuestion.TestId = cmd_reader.GetInt32(6);
                 ListOfClasses.Add(NamelyQuestion);
             }
 
+            this.ListOfClasses = ListOfClasses;*/
+
             InitializeComponent();
 
-            foreach (var i in ListOfClasses)
-            {
-                this.TextOfQuestion.Text = i.name;
-                this.QuestionVar1.Text = i.var1;
-                this.QuestionVar2.Text = i.var2;
-                this.QuestionVar3.Text = i.var3;
-            }
-
+            Click();
         }
 
         private void Next_Question_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (this.First.IsChecked == true || this.Second.IsChecked == true || this.Third.IsChecked == true)
+            {
+                MySqlConnection conn = DBUtils.GetDBConnection();
+                conn.Open();
+                string sql = $"SELECT * FROM questions WHERE test_id = {TestId} AND question_id = {count}";
+                MySqlCommand command = new MySqlCommand(sql, conn);
+                MySqlDataReader command_reader = command.ExecuteReader();
+                while (command_reader.Read())
+                {
+                    this.TextOfQuestion.Text = command_reader.GetString(1);
+                    this.QuestionVar1.Text = command_reader.GetString(2);
+                    this.QuestionVar2.Text = command_reader.GetString(3);
+                    this.QuestionVar3.Text = command_reader.GetString(4);
+                }
+                count++;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void Click()
+        {
+            MySqlConnection conn = DBUtils.GetDBConnection();
+            conn.Open();
+            string sql = $"SELECT * FROM questions WHERE test_id = {TestId} AND question_id = 1";
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            MySqlDataReader command_reader = command.ExecuteReader();
+            while (command_reader.Read())
+            {
+                this.TextOfQuestion.Text = command_reader.GetString(1);
+                this.QuestionVar1.Text = command_reader.GetString(2);
+                this.QuestionVar2.Text = command_reader.GetString(3);
+                this.QuestionVar3.Text = command_reader.GetString(4);
+            }
         }
     }
 }

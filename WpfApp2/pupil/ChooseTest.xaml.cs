@@ -70,8 +70,7 @@ namespace WpfApp2.pupil
             MySqlCommand command = new MySqlCommand(sql, conn);
             int command_query_selectId = Convert.ToInt32(command.ExecuteScalar());
 
-            Test TestWind = new Test();
-            TestWind.TestId = command_query_selectId;
+            Test TestWind = new Test(command_query_selectId);
 
             this.Hide();
             TestWind.ShowDialog();

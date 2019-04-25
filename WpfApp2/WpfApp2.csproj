@@ -77,6 +77,9 @@
     <Compile Include="pupil\Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pupil\writeName.xaml.cs">
+      <DependentUpon>writeName.xaml</DependentUpon>
+    </Compile>
     <Compile Include="teacher\AddPacket.xaml.cs">
       <DependentUpon>AddPacket.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pupil\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pupil\writeName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
