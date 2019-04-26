@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="writeName" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock Width="300" Height="20" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,149,0,0" TextWrapping="Wrap" Text="Введите имя, фамилию и класс" VerticalAlignment="Top"/>
+        <TextBox Name="PupilName" TextAlignment="Center" HorizontalAlignment="Center" Height="23" Margin="0,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <Button Content="Отправить результаты" HorizontalAlignment="Center" Margin="0,202,0,0" VerticalAlignment="Top" Width="300" Click="Button_Click"/>
+
     </Grid>
 </Window>

@@ -25,65 +25,114 @@ namespace WpfApp2.pupil
         public QuestionClass NamelyQuestion { get; set; }
         public List<QuestionClass> ListOfClasses { get; set; }
 
+        PostAnswers AnswersPupilClass = new PostAnswers();
+
         int count = 2;
+
+        int ThisChecked = 0;
 
         public Test(int TestId)
         {
             this.TestId = TestId;
 
-            /*MySqlConnection conn = DBUtils.GetDBConnection();
+            MySqlConnection conn = DBUtils.GetDBConnection();
             conn.Open();
 
-            string sql = $"SELECT * FROM questions WHERE `test_id` = {TestId}";
+            string sql = $"SELECT COUNT(*) FROM questions WHERE `test_id` = {TestId}";
             MySqlCommand command = new MySqlCommand(sql, conn);
-            MySqlDataReader cmd_reader = command.ExecuteReader();
+            int cmd_numberOfQuestions = Convert.ToInt32(command.ExecuteScalar());
 
-            List<QuestionClass> ListOfClasses = new List<QuestionClass> { };
-            while (cmd_reader.Read() )
-            {
-                NamelyQuestion = new QuestionClass();
-                NamelyQuestion.Id = cmd_reader.GetInt32(0);
-                NamelyQuestion.name = cmd_reader.GetString(1);
-                NamelyQuestion.var1 = cmd_reader.GetString(2);
-                NamelyQuestion.var2 = cmd_reader.GetString(3);
-                NamelyQuestion.var3 = cmd_reader.GetString(4);
-                NamelyQuestion.rightvar = cmd_reader.GetInt32(5);
-                NamelyQuestion.TestId = cmd_reader.GetInt32(6);
-                ListOfClasses.Add(NamelyQuestion);
-            }
-
-            this.ListOfClasses = ListOfClasses;*/
+            AnswersPupilClass.TestId = TestId;
+            AnswersPupilClass.AllQuestions = cmd_numberOfQuestions;
 
             InitializeComponent();
 
-            Click();
+            FirstQuestion();
         }
 
         private void Next_Question_Click(object sender, RoutedEventArgs e)
         {
-            if (this.First.IsChecked == true || this.Second.IsChecked == true || this.Third.IsChecked == true)
+            MySqlConnection conn_2 = DBUtils.GetDBConnection();
+            conn_2.Open();
+            string sql = $"SELECT name FROM questions WHERE test_id = {TestId} AND question_id = {count}";
+            MySqlCommand command = new MySqlCommand(sql, conn_2);
+            var command_execute = command.ExecuteScalar();
+            if (command_execute == null)
             {
-                MySqlConnection conn = DBUtils.GetDBConnection();
-                conn.Open();
-                string sql = $"SELECT * FROM questions WHERE test_id = {TestId} AND question_id = {count}";
-                MySqlCommand command = new MySqlCommand(sql, conn);
-                MySqlDataReader command_reader = command.ExecuteReader();
-                while (command_reader.Read())
+                if (this.First.IsChecked == true || this.Second.IsChecked == true || this.Third.IsChecked == true)
                 {
-                    this.TextOfQuestion.Text = command_reader.GetString(1);
-                    this.QuestionVar1.Text = command_reader.GetString(2);
-                    this.QuestionVar2.Text = command_reader.GetString(3);
-                    this.QuestionVar3.Text = command_reader.GetString(4);
+
+                    if (this.First.IsChecked == true)
+                        ThisChecked = 1;
+                    else if (this.Second.IsChecked == true)
+                        ThisChecked = 2;
+                    else if (this.Third.IsChecked == true)
+                        ThisChecked = 3;
+
+                    MySqlConnection conn = DBUtils.GetDBConnection();
+                    conn.Open();
+                    sql = $"SELECT * FROM questions WHERE test_id = {TestId} AND question_id = {count-1}";
+                    command = new MySqlCommand(sql, conn);
+                    MySqlDataReader command_reader = command.ExecuteReader();
+                    while (command_reader.Read())
+                    {
+                        if (ThisChecked == command_reader.GetInt32(5))
+                        {
+                            AnswersPupilClass.RightAnswers++;
+                        }
+                        else
+                        {
+                            AnswersPupilClass.WrongAnswers++;
+                        }
+                    }
                 }
-                count++;
+                this.Hide();
+                writeName WriteNameWind = new writeName(AnswersPupilClass);
+                WriteNameWind.ShowDialog();
             }
             else
             {
-                return;
+                if (this.First.IsChecked == true || this.Second.IsChecked == true || this.Third.IsChecked == true)
+                {
+
+                    if (this.First.IsChecked == true) 
+                        ThisChecked = 1;
+                    else if (this.Second.IsChecked == true)
+                        ThisChecked = 2;
+                    else if (this.Third.IsChecked == true)
+                        ThisChecked = 3;
+                    
+                    MySqlConnection conn = DBUtils.GetDBConnection();
+                    conn.Open();
+                    sql = $"SELECT * FROM questions WHERE test_id = {TestId} AND question_id = {count}";
+                    command = new MySqlCommand(sql, conn);
+                    MySqlDataReader command_reader = command.ExecuteReader();
+                    while (command_reader.Read())
+                    {
+                        if(ThisChecked == command_reader.GetInt32(5))
+                        {
+                            AnswersPupilClass.RightAnswers++;
+                        }
+                        else
+                        {
+                            AnswersPupilClass.WrongAnswers++;
+                        }
+                        this.TextOfQuestion.Text = command_reader.GetString(1);
+                        this.QuestionVar1.Text = command_reader.GetString(2);
+                        this.QuestionVar2.Text = command_reader.GetString(3);
+                        this.QuestionVar3.Text = command_reader.GetString(4);
+                    }
+                    count++;
+                }
+                else
+                {
+                    return;
+                }
             }
+
         }
 
-        private void Click()
+        private void FirstQuestion()
         {
             MySqlConnection conn = DBUtils.GetDBConnection();
             conn.Open();

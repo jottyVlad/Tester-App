@@ -22,6 +22,16 @@ namespace WpfApp2
         public string var3 { get; set; }
         public int rightvar { get; set; }
         public int TestId { get; set; }
+        public bool rightAnswer { get; set; }
+    }
+
+    public class PostAnswers
+    {
+        public string PosterName { get; set; }
+        public int TestId { get; set; }
+        public int AllQuestions { get; set; }
+        public int RightAnswers { get; set; }
+        public int WrongAnswers { get; set; }
     }
 
 }
