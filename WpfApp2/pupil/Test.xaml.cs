@@ -23,7 +23,7 @@ namespace WpfApp2.pupil
         public int TestId { get; set; }
         public TestClass NamelyTest { get; set; }
         public QuestionClass NamelyQuestion { get; set; }
-        public List<QuestionClass> ListOfClasses { get; set; }
+        public ChooseTest ChooseTestWind { get; set; }
 
         PostAnswers AnswersPupilClass = new PostAnswers();
 
@@ -88,6 +88,8 @@ namespace WpfApp2.pupil
                 }
                 this.Hide();
                 writeName WriteNameWind = new writeName(AnswersPupilClass);
+                WriteNameWind.TestWind = this;
+                this.Hide();
                 WriteNameWind.ShowDialog();
             }
             else

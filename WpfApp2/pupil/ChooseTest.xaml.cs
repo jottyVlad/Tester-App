@@ -72,6 +72,8 @@ namespace WpfApp2.pupil
 
             Test TestWind = new Test(command_query_selectId);
 
+            TestWind.ChooseTestWind = this;
+
             this.Hide();
             TestWind.ShowDialog();
         }

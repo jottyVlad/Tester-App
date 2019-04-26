@@ -21,6 +21,7 @@ namespace WpfApp2.pupil
     public partial class writeName : Window
     {
         protected PostAnswers PupilPostAnswers { get; set; }
+        public Test TestWind { get; set; }
         public writeName(PostAnswers PupilPostAnswers)
         {
             this.PupilPostAnswers = PupilPostAnswers;
@@ -36,6 +37,10 @@ namespace WpfApp2.pupil
                 string sql = $"INSERT INTO posters(id, PupilName, TestId, RightAnswers, WrongAnswers, AllQuestions) VALUES(null, '{this.PupilName.Text}', {PupilPostAnswers.TestId}, {PupilPostAnswers.RightAnswers}, {PupilPostAnswers.WrongAnswers}, {PupilPostAnswers.AllQuestions})";
                 MySqlCommand command = new MySqlCommand(sql, conn);
                 int command_nonquery = command.ExecuteNonQuery();
+                YourResults ResultsWind = new YourResults(PupilPostAnswers.WrongAnswers, PupilPostAnswers.RightAnswers, PupilPostAnswers.AllQuestions);
+                ResultsWind.WriteNameWind = this;
+                this.Hide();
+                ResultsWind.ShowDialog();
             }
         }
     }

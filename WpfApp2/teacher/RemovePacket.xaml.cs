@@ -12,7 +12,6 @@ namespace WpfApp2.teacher
     /// </summary>
     public partial class RemovePacket : Window
     {
-        int IdPacket { get; set; }
         public Teacher TeacherWind { get; set; }
         public RemovePacket()
         {

@@ -80,6 +80,9 @@
     <Compile Include="pupil\writeName.xaml.cs">
       <DependentUpon>writeName.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pupil\YourResults.xaml.cs">
+      <DependentUpon>YourResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="teacher\AddPacket.xaml.cs">
       <DependentUpon>AddPacket.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pupil\writeName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pupil\YourResults.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

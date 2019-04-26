@@ -12,8 +12,7 @@
         <TextBlock Name="QuestionVar1" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="638" FontSize="15"/>
         <TextBlock Name="QuestionVar2" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="638" FontSize="15"/>
         <TextBlock Name="QuestionVar3" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="638" FontSize="15"/>
-        <Button Content="Дальше" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="792" Height="23" FontSize="15" Click="Next_Question_Click"/>
-        <Button Content="Пропустить" HorizontalAlignment="Left" Margin="0,260,0,0" VerticalAlignment="Top" Width="792" Height="23" FontSize="15"/>
+        <Button Content="Дальше" HorizontalAlignment="Left" Margin="0,232,0,0" VerticalAlignment="Top" Width="792" FontSize="15" Click="Next_Question_Click"/>
         <StackPanel x:Name="stackPanel" Margin="0,148,110,-23" HorizontalAlignment="Right" Width="25">
             <RadioButton Name="First" GroupName="Answer" Margin="0,0,0,0"/>
             <RadioButton Name="Second" GroupName="Answer" Margin="0,15,0,0"/>

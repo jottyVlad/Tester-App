@@ -23,11 +23,11 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
          public MainWindow()
-        {
+         {
             InitializeComponent();
 
             this.Closed += MainWindow_Closed;
-        }
+         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
@@ -37,14 +37,14 @@ namespace WpfApp2
 
         private void ButtonAuth_Click(object sender, RoutedEventArgs e)
         {
-            if(this.ComboBoxAuth.SelectedItem == Teacher)
+            if (this.ComboBoxAuth.SelectedItem == Teacher)
             {
                 this.Hide();
                 Teacher TeacherWind = new Teacher();
                 TeacherWind.MainWind = this;
                 TeacherWind.ShowDialog();
             }
-            if(this.ComboBoxAuth.SelectedItem == Pupil)
+            if (this.ComboBoxAuth.SelectedItem == Pupil)
             {
                 this.Hide();
                 ChooseTest chooseTestWindow = new ChooseTest();
