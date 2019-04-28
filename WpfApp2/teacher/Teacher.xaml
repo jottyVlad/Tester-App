@@ -9,5 +9,6 @@
     <Grid>
         <Button Content="Добавить пакет заданий" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="200" Click="Add_Click"/>
         <Button Content="Удалить пакет заданий" HorizontalAlignment="Center" Margin="0,181,0,0" VerticalAlignment="Top" Width="200" Click="Remove_Click"/>
+        <Button Content="Просмотреть результаты" HorizontalAlignment="Left" Margin="296,252,0,0" VerticalAlignment="Top" Width="200" Click="ShowResults_Click"/>
     </Grid>
 </Window>

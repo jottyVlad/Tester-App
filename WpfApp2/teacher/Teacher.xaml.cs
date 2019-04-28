@@ -54,5 +54,13 @@ namespace WpfApp2.teacher
                 return;
             }
         }
+
+        private void ShowResults_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            ChooseResults ChooseResultsWind = new ChooseResults();
+            ChooseResultsWind.TeacherWind = this;
+            ChooseResultsWind.Show();
+        }
     }
 }

@@ -89,8 +89,14 @@
     <Compile Include="teacher\AnswerPage.xaml.cs">
       <DependentUpon>AnswerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="teacher\ChooseResults.xaml.cs">
+      <DependentUpon>ChooseResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="teacher\RemovePacket.xaml.cs">
       <DependentUpon>RemovePacket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="teacher\Results.xaml.cs">
+      <DependentUpon>Results.xaml</DependentUpon>
     </Compile>
     <Compile Include="teacher\Teacher.xaml.cs">
       <DependentUpon>Teacher.xaml</DependentUpon>
@@ -132,9 +138,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="teacher\ChooseResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="teacher\RemovePacket.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="teacher\Results.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="teacher\Teacher.xaml">
       <SubType>Designer</SubType>

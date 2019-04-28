@@ -12,7 +12,6 @@ namespace WpfApp2
         public int Id { get; set; }
         public string name { get; set; }
     }
-
     public class QuestionClass
     {
         public int Id { get; set; }
@@ -24,7 +23,6 @@ namespace WpfApp2
         public int TestId { get; set; }
         public bool rightAnswer { get; set; }
     }
-
     public class PostAnswers
     {
         public string PosterName { get; set; }
